@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/jquery-ui.js"></script>
+</head>
+
+<body>
+    <div id="search" style="display:inline-block; width: 500px;">
+        <select name="listSearch" id="listSearch" style="display:inline-block;">
+            <option value="http://google.com/search" >Google</option>
+            <option value="https://yandex.com/search/">Яндекс</option>
+        </select>
+
+        <div style="display:inline-block;">
+            <input type="search" id="labelSearch" name="labelSearch" value="">
+            <input type="submit" id="buttonSearch" value="поиск">
+        </div>
+        <div id="resultAjax" ></div>
+    </div>
+</body>
+</html>

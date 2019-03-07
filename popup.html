@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery.cookie.js"></script>
-    <script src="js/popup.js"></script>
     <script src="js/jquery-ui.js"></script>
+    <script rel="stylesheet" href="css/jquery-ui.css"></script>
+    <script src="js/popup.js"></script>
 </head>
 
 <body>
@@ -16,10 +17,11 @@
         </select>
 
         <div style="display:inline-block;">
-            <input type="search" id="labelSearch" name="labelSearch" value="">
+            <input type="search" id="labelSearch" name="labelSearch" class="autocomplete"  value="">
             <input type="submit" id="buttonSearch" value="поиск">
         </div>
-        <div id="resultAjax" ></div>
+        <div id="result" ></div>
+        <script src="" id="script" name="script"> </script>
     </div>
 </body>
 </html>

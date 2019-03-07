@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    var tips = [];//поисковые подсказки
     //загрузка выбранного поиска в пред. сеансе
     if($.cookie('listSearch'))
         $('#listSearch').val($.cookie('listSearch'));
@@ -36,22 +35,21 @@ $(document).ready(function(){
     });
     //взятие похожих запросов для подсказок
     $('#labelSearch').keyup(function(){
-        if ($('#labelSearch').val().length > 0) {
-            $.ajax({
-                type: 'GET',
-                url: "https://www.googleapis.com/customsearch/v1?key=AIzaSyBXQmWrtnhgBblNofM6NSfiWqbguDO8uj0&cx=017576662512468239146:omuauf_lfve&q=" + $( "#labelSearch" ).val(),
-                dataType: "json",
-                success: function (data) {
-                    resultAjax.innerHTML = ""
-                    for (i = 0; i < data.items.length; i++){
-                        tips[i] = data.items[i].title
-                    }
-                },
-                error: function (){
-                    resultAjax.innerHTML = "AJAX запрос не обработан www.googleapis.com"
-                }
-            });
-        }
-        resultAjax.innerHTML =""
+        $.getScript(
+            "https://www.google.com/complete/search?client=hp&hl=en&sugexp=msedr&gs_rn=62&gs_ri=hp&cp=1&gs_id=9c&q=" + $("#labelSearch").val() + "&xhr=t&callback=hello&callback=addTips",
+            addTips)
     });
 });
+var tips = [];//поисковые подсказки
+function addTips(data){
+    var lengthLabelSearch = ($("#labelSearch").val().length);//берем длину запроса
+    for (var key in data){
+        if (key == '1'){
+            for (var key1 in data[key]){
+                tips[key1] = (data[key][key1]["0"].slice(0, lengthLabelSearch) + data[key][key1]["0"].slice(lengthLabelSearch + 3)).slice(0, -4);
+            }
+            break;
+        }
+    }
+    console.log(tips);
+};
